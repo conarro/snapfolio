@@ -1,0 +1,30 @@
+<div class="span12">
+  <div class="page-header">
+    <h4><i class="icon-cog"></i> Settings</h4>
+  </div>
+
+  <div class="tabbable"> <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab1" data-toggle="tab">Connectors</a></li>
+      <li><a href="#tab2" data-toggle="tab">Account</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active row-fluid" id="tab1">
+        <%= render :partial => 'devise/registrations/connector_settings' %>
+      </div>
+      <div class="tab-pane row-fluid" id="tab2">
+        <%= render :partial => 'devise/registrations/account_settings' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function() {
+  $('.setting-header').collapse({
+    toggle: true
+    //parent: $(this).parent().parent().parent().siblings('.box-content')
+  })
+})
+</script>
+

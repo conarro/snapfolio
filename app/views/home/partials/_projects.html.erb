@@ -1,0 +1,23 @@
+<div class="box">
+  <div class="box-header">
+    <h2>Projects</h2>
+    <div class="box-icon">
+      <a href="#" class="btn-setting" data-content="<i class='icon-minus-sign'></i><a href='#'>Remove from public page</a><br/><i class='icon-minus-sign'></i><a href='#'>Remove from printed resume</a>" data-placement="bottom" data-html="true" rel="popover" data-original-title="Module Settings"><i class="icon-wrench"></i></a>
+    </div>
+  </div>
+  <div class="box-content">
+    <% current_user.github_user.repos.is_web_visible.each do |repo| %>
+    <div class="box">
+      <div class="module-item-header box-header">
+        <div class="box-icon">
+          <a href="#" class="btn-setting" data-content="<i class='icon-minus-sign'></i><a href='#'>Remove from public page</a><br/><i class='icon-minus-sign'></i><a href='#'>Remove from printed resume</a>" data-placement="bottom" data-html="true" rel="popover" data-original-title="Project Settings"><i class="icon-wrench"></i></a>
+        </div>
+        <h2><%= repo.name.titleize %></h2><span class="pull-right"><%= repo.pushed_at.strftime('%B %Y') %></span>
+      </div>
+      <div class="module-item-content box-content" id="box1">
+        <p><%= repo.description.humanize %></p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

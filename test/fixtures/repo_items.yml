@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  github_user_id: 1
+  repo_id: 1
+  is_web_visible: false
+  is_print_visible: false
+
+two:
+  github_user_id: 1
+  repo_id: 1
+  is_web_visible: false
+  is_print_visible: false

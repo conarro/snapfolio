@@ -1,0 +1,63 @@
+<div class="box span6">
+  <div class="box-header">
+    <div class="box-icon">
+      <a href="#" class='setting-header'><i class="icon-linkedin-sign icon-large"></i></a>
+    </div>
+    <h2>LinkedIn</h2>
+  </div>
+  <div class="box-content" style="overflow:auto;">
+    <% if current_user && current_user.has_auth?('linkedin') %>
+      <div style="width:400px;">
+        <%= image_tag current_user.linkedin_user.photo_url, :class => "img-polaroid pull-left", :width => '80', :style => 'margin:8px 0 0 5px;'%>
+        <div class="caption pull-left" style="margin:5px 0 0 10px;">
+          <p style="padding-top:5px;font-size:1.1em;">Signed in as <%= current_user.linkedin_user.full_name %></p>
+          <%= link_to raw("<i class='icon-minus-sign'></i> Disconnect LinkedIn"), authentication_path(current_user.get_auth('linkedin')), :method => :delete, :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
+        </div>
+      </div>
+    <% else %>
+      <div style="width:400px;">
+        <%= image_tag raw(""), :width => 80, :class => "img-polaroid pull-left", :style => 'margin:8px 0 0 5px;' %>
+        <div class="caption pull-left" style="margin:5px 0 0 10px;">
+          <p style="padding-top:5px;font-size:1.1em;">
+            You have not authorized a Linkedin account yet.</p>
+          <%= link_to raw("<i class='icon-plus-sign icon-large'></i> Connect Linkedin"), linkedin_auth_path, :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="box span6">
+  <div class="box-header">
+    <div class="box-icon">
+      <a href="#" class='setting-header'><i class="icon-github-sign icon-large"></i></a>
+    </div>
+    <h2>GitHub</h2>
+  </div>
+  <div class="box-content" style="overflow:auto;">
+    <% if current_user && current_user.has_auth?('github') %>
+      <div style="width:400px;">
+        <%= image_tag current_user.github_user.photo_url, :class => "img-polaroid pull-left", :width => '80', :style => 'margin:8px 0 0 5px;' if current_user.github_user.photo_url %>
+        <div class="caption pull-left" style="margin:5px 0 0 10px;">
+          <p style="padding-top:5px;font-size:1.1em;">Signed in as <%= current_user.github_user.username %></p>
+          <%= link_to raw("<i class='icon-minus-sign'></i> Disconnect GitHub"), authentication_path(current_user.get_auth('github')), :method => :delete, :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
+        </div>
+      </div>
+    <% else %>
+      <div style="width:400px;">
+        <p>You haven't added GitHub yet.</p>
+          <%= link_to raw("<i class='icon-plus-sign icon-large'></i> Connect GitHub"), github_auth_path, :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
+      </div>
+    <% end %>  
+  </div>
+</div>
+
+<div id="github-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Connect with GitHub</h3>
+  </div>
+  <div class="modal-body">
+    here is a form to add github stuff
+  </div>
+</div>

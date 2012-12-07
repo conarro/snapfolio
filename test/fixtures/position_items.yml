@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  linkedin_user_id: 1
+  position_id: 1
+  is_web_visible: false
+  is_print_visible: false
+
+two:
+  linkedin_user_id: 1
+  position_id: 1
+  is_web_visible: false
+  is_print_visible: false

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  degree: MyString
+  field_of_study: MyString
+  start_date: MyString
+  end_date: MyString
+  name: MyString
+  education_id: MyString
+
+two:
+  degree: MyString
+  field_of_study: MyString
+  start_date: MyString
+  end_date: MyString
+  name: MyString
+  education_id: MyString

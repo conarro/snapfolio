@@ -1,0 +1,21 @@
+<div class="box">
+  <div class="box-header">
+    <h2>Experience</h2>
+    <div class="box-icon">
+      <a href="#" class="btn-setting" data-content="<i class='icon-minus-sign'></i><a href='#'>Remove from public page</a><br/><i class='icon-minus-sign'></i><a href='#'>Remove from printed resume</a>" data-placement="bottom" rel="popover" data-original-title="Module Settings"><i class="icon-wrench"></i></a>
+    </div>
+  </div>
+  <div class="box-content">
+    <% current_user.linkedin_user.positions.is_web_visible.each do |pos| %>
+    <div class="box">
+      <div class="module-item-header box-header">
+        <div class="box-icon">
+          <a href="#" class="btn-setting" data-content="<i class='icon-minus-sign'></i><a href='#'>Remove from public page</a><br/><i class='icon-minus-sign'></i><a href='#'>Remove from printed resume</a>" data-placement="bottom" rel="popover" data-original-title="Project Settings"><i class="icon-wrench"></i></a>
+        </div>
+        <h2><%= pos.title %> <small><%= pos.company %> - Atlanta, GA</small></h2><span class="pull-right"><%= pos.is_current == true ? 'Current' : "#{pos.start_date} - #{pos.end_date}" %></span>
+        <div class="module-item-content box-content" id="box1">
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

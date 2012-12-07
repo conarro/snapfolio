@@ -1,0 +1,28 @@
+<div class="span5">
+  <div class="row-fluid" style="margin-bottom:20px;">
+    <div class="img-polaroid span12">
+      <img src="http://2.bp.blogspot.com/-ByoqVwtwKnU/TyqgNLXF0hI/AAAAAAAAAM0/zHGDBMrU-ig/s1600/passing-notes.jpg" alt="">
+      <div class="caption span12">
+        <p style="padding-top:10px;">Integrate your accomplishments in a snap.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="span6 pull-right">
+  <div class="well">
+  <legend><span class="brand" style="font-size:1.5em;">snapfol.io &nbsp;</span><small>bridging the gap</small></legend>
+  <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
+    <div class="form-inputs">
+      <%= f.input :email, :required => false, :autofocus => true %>
+      <%= f.input :password, :required => false %>
+      <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "Sign in",:class => 'btn-primary' %>
+    </div>
+  <% end %>
+  <%= render "devise/shared/links" %>
+  </div>
+
+</div>

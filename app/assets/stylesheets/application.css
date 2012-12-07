@@ -1,0 +1,210 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require bootstrap_and_overrides
+ *= require_self
+ *= require_tree .
+*/
+
+body {
+  padding-top:60px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: .8em;
+  background: url('snapfolio_bg.png') repeat;
+}
+
+.icon-white {
+  color:#fff;
+}
+.snap-color {
+  color:#08C;
+}
+.container-fluid > .sidebar {
+    position: relative;
+    top: 0;
+    left:auto;
+    width: 175px;
+}
+
+.left {
+    float:left;
+}
+
+.right {
+    float:right;
+}
+
+.container-fluid > .content {
+    margin: 0 240px 0 190px;
+}
+.navbar .brand {
+  text-shadow: 0 1px #333;
+  font-family: 'Comfortaa', cursive;
+  font-size: 22px;
+  font-weight:bold;
+}
+ .brand-light {
+   font-family: 'Comfortaa', serif;
+   font-weight:normal;
+   font-size: 16px;
+   text-shadow:none;
+   letter-spacing:2px;
+}
+.page-header {
+  margin-top:0;
+}
+
+.page-header h1{
+  font-size:34px;
+}
+
+.page-header small {
+  font-size:15px;
+}
+
+/*body .modal {
+  width: 900px;
+  margin: -420px 0 0 -450px;
+}*/
+
+.no-decoration {
+  text-decoration:none;
+}
+
+.no-decoration:hover {
+  text-decoration:none;
+}
+
+.modal-header {
+    background-color: #F5F5F5;
+    border-radius: 6px 6px 0 0;
+    border-bottom: 1px solid #DDDDDD;
+    box-shadow: 0 -1px 0 #fff inset;
+    margin-bottom: 0;
+    padding: 14px 15px 15px;
+    text-align: left;
+}
+
+a > i:hover {
+  text-decoration:none;
+}
+
+.icon-set a {
+  margin-right:5px;
+}
+
+.icon-set a:last-child {
+  margin-right:0;
+}
+
+.box {
+    margin: 20px 0;
+}
+
+.box-content > .box {
+  margin: 5px 0;
+}
+.box-header {
+    background-color: #FAFAFA;
+    background-image: -moz-linear-gradient(center top , #FAFAFA, #EFEFEF);
+    border: 1px solid #DDDDDD;
+    border-radius: 2px 2px 0 0;
+    box-shadow: none;
+    height: 20px;
+    margin-bottom: -1px;
+    overflow: hidden;
+    padding: 10px;
+}
+.box-header h2 {
+    color: #333;
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 16px;
+    margin-top: 2px;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+.box-header h2 i {
+    margin: 1px 3px 0 5px;
+    opacity: 0.4;
+}
+.box-header .break {
+    border-left: 1px solid #FCFCFC;
+    border-right: 1px solid #DDDDDD;
+    margin: -12px 10px -10px;
+    padding: 12px 0 10px;
+}
+.box-header .box-icon {
+    float: right;
+    margin-top: 1px;
+}
+.box-header .box-icon i {
+    -moz-transition: all 0.1s ease-in-out 0s;
+    opacity: 0.9;
+}
+.box-header .box-icon i {
+    opacity: 0.8;
+}
+.box-header .box-icon a {
+    margin: 0 5px;
+}
+.box-content {
+    background: none repeat scroll 0 0 #FCFCFC;
+    border: 1px solid #DDDDDD;
+    border-radius: 0 0 2px 2px;
+    margin-top: -1px;
+    padding: 10px;
+}
+
+.module-item-header {
+  background-color: #FCFCFC;
+  background-image: -moz-linear-gradient(center top , #FCFCFC, #FCFCFC);
+  border: none;
+  height: 20px;
+  overflow: hidden;
+  padding: 5px;
+}
+
+.module-item-header small {
+  padding-right:10px;
+  font-size:.9em;
+}
+
+.module-item-content {
+  background: none repeat scroll 0 0 #FCFCFC;
+  border: none;
+  padding: 0 5px 5px;
+}
+
+.cert-item {
+  border-bottom:1px solid #ddd;
+  padding: 10px 0;
+}
+
+.cert-item h5 > a {
+  font-weight:normal;
+}
+.cert-item .more-info {
+  margin-top:10px;
+}
+
+.cert-item h5 {
+  margin-top:0;
+}
+
+.cert-item ul li {
+  margin-bottom: 15px;
+}
+.cert-item ul, .cert-item ul li:last-child {
+  margin-bottom:0;
+}
+#cert-sidebar .cert-item:last-child {
+  border:none;
+}
