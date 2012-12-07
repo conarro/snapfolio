@@ -1,9 +1,9 @@
 Snapfolio::Application.routes.draw do
-  
+
   match '/auth/:provider/callback' => 'authentications#create'
   
   resources :authentications
-
+  resources :repos
   devise_for :users
   
   resources :home
@@ -12,8 +12,11 @@ Snapfolio::Application.routes.draw do
   
   get "/auth/linkedin", :as => 'linkedin_auth'
   get "/auth/github", :as => 'github_auth'
-  
+  get "/auth/stackexchange", :as => 'stackexchange_auth'
   root :to => 'home#show'
+  
+  post "/repos/:repo/change_web_pref" => "repos#change_web_pref", :as => :change_repo_web_pref
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

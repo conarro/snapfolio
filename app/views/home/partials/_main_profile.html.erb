@@ -6,8 +6,8 @@
       <div class="page-header">
         <h1><%= current_user.linkedin_user.full_name %> <small><%= current_user.linkedin_user.headline %></small></h1>
       </div>
-      <%= render :partial => 'home/partials/projects' %>
-      <%= render :partial => 'home/partials/experience' %>
+      <%= render :partial => 'home/partials/projects' if current_user.github_user %>
+      <%= render :partial => 'home/partials/experience' if current_user.linkedin_user %>
     </div>
   </div>
 </div>

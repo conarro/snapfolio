@@ -1,18 +1,30 @@
 <div class="box">
   <div class="box-header">
-    <h2>Projects</h2>
-    <div class="box-icon">
-      <a href="#" class="btn-setting" data-content="<i class='icon-minus-sign'></i><a href='#'>Remove from public page</a><br/><i class='icon-minus-sign'></i><a href='#'>Remove from printed resume</a>" data-placement="bottom" data-html="true" rel="popover" data-original-title="Module Settings"><i class="icon-wrench"></i></a>
+    <h2>Projects</h2><%= link_to raw('<i class="icon-wrench"></i>'), '#', :class => 'settings-link' %>
+    <div id='change-setting-title' style="display:none;">
+      Project Settings
+    </div>
+    <div id='change-setting-content' style="display:none;">
+      <% web_icon = 'icon-minus-sign' %>
+      <% web_link_text = 'Hide from web folio' %>
+      <% print_icon = 'icon-minus-sign' %>
+      <% print_link_text = 'Hide from print folio' %>
+      <i class="<%= web_icon %>"></i> <%= link_to raw(" #{web_link_text}") %><br/>
+      <i class="<%= print_icon %>"></i> <%= link_to raw("#{print_link_text}")%>
     </div>
   </div>
   <div class="box-content">
-    <% current_user.github_user.repos.is_web_visible.each do |repo| %>
+    <% current_user.github_user.repos.is_web_visible.order("repo_created_at DESC").each do |repo| %>
     <div class="box">
       <div class="module-item-header box-header">
-        <div class="box-icon">
-          <a href="#" class="btn-setting" data-content="<i class='icon-minus-sign'></i><a href='#'>Remove from public page</a><br/><i class='icon-minus-sign'></i><a href='#'>Remove from printed resume</a>" data-placement="bottom" data-html="true" rel="popover" data-original-title="Project Settings"><i class="icon-wrench"></i></a>
+        <h2><%= repo.name.titleize %></h2>
+        <%= link_to raw('<i class="icon-wrench"></i>'), '#', :class => 'settings-link' %>
+        <span class="pull-right"><%= "#{repo.repo_created_at.strftime('%h. %Y')} - #{repo.pushed_at.strftime('%h. %Y')}" %></span>
+        <div id='change-setting-title' style="display:none;">Project Settings</div>
+        <div id='change-setting-content' style="display:none;">
+          <%= settings_icon(repo, 'web') %> <%= link_to settings_text(repo, 'web'), change_repo_web_pref_path(repo), :method => :post %><br/>
+          <%= settings_icon(repo, 'print') %> <%= link_to settings_text(repo, 'print')%>
         </div>
-        <h2><%= repo.name.titleize %></h2><span class="pull-right"><%= repo.pushed_at.strftime('%B %Y') %></span>
       </div>
       <div class="module-item-content box-content" id="box1">
         <p><%= repo.description.humanize %></p>
@@ -21,3 +33,23 @@
     <% end %>
   </div>
 </div>
+
+<script>
+$(document).ready(function() {
+  // $('.settings-link').click(function() {
+  //   var c = $(this).siblings('.change-setting').html();
+  //   console.log(c);
+  // })
+  $('.settings-link').popover({
+    animation: true,
+    html: true,
+    placement: 'bottom',
+    title: function() {
+      return $(this).siblings('#change-setting-title').html();
+    },
+    content: function() {
+      return $(this).siblings('#change-setting-content').html();
+    }
+  })
+})
+</script>

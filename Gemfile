@@ -39,11 +39,13 @@ gem 'devise'
 gem 'omniauth-twitter'
 gem 'omniauth-linkedin'
 gem 'omniauth-github'
+gem 'omniauth-stackexchange'
 
 # API gems
 gem 'twitter'
 gem 'linkedin', :git => "git://github.com/pengwynn/linkedin.git"
 gem 'github_api'
+gem 'serel'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

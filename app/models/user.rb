@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :authentications
   has_one :linkedin_user
   has_one :github_user
+  has_one :stackexchange_user
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -53,6 +54,24 @@ class User < ActiveRecord::Base
       gu.build_profile
     else
       client = self.github_user.client
+    end
+  end
+  
+  def build_stackexchange_profile omniauth=nil
+    if omniauth
+      Rails.logger.info "Omniauth - creating stackexchange user..."
+      su = StackexchangeUser.create!(:user_id     => self.id,
+                                     :username    => omniauth['extra']['raw_info']['display_name'],
+                                     :photo_url   => omniauth['extra']['raw_info']['profile_image'],
+                                     :profile_url => omniauth['extra']['raw_info']['link'],
+                                     :profile_id  => omniauth['extra']['raw_info']['user_id'],
+                                     :reputation  => omniauth['extra']['raw_info']['reputation'],
+                                     :gold_badge_count =>  omniauth['extra']['raw_info']['badge_counts']['gold'],
+                                     :silver_badge_count =>  omniauth['extra']['raw_info']['badge_counts']['silver'],
+                                     :bronze_badge_count =>  omniauth['extra']['raw_info']['badge_counts']['bronze'])
+      #su.build_profile
+    else
+      client = self.stackexchange_user.client
     end
   end
       

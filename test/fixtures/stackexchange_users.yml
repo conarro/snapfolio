@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  username: MyString
+  photo_url: MyString
+  profile_url: MyString
+  profile_id: MyString
+  reputation: 1
+  gold_badge_count: 1
+  silver_badge_count: 1
+  bronze_badge_count: 1
+
+two:
+  user_id: 1
+  username: MyString
+  photo_url: MyString
+  profile_url: MyString
+  profile_id: MyString
+  reputation: 1
+  gold_badge_count: 1
+  silver_badge_count: 1
+  bronze_badge_count: 1

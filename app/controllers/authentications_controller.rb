@@ -1,4 +1,6 @@
 class AuthenticationsController < ApplicationController
+  before_filter :remove_associated_data, :only => :destroy
+  
   # GET /authentications
   # GET /authentications.json
   def index
@@ -24,7 +26,7 @@ class AuthenticationsController < ApplicationController
                                              :uid               => omniauth['uid'],
                                              :token             => omniauth['credentials']['token'],
                                              :secret            => omniauth['credentials']['secret'])
-        flash[:notice] = "#{omniauth['provider'].titleize} authentication successful"
+        flash[:notice] = "#{omniauth['provider'].titleize} connected!"
         build_user_profile(omniauth)
         redirect_to edit_user_registration_path
       end
@@ -45,9 +47,8 @@ class AuthenticationsController < ApplicationController
   # DELETE /authentications/1
   # DELETE /authentications/1.json
   def destroy
-    @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy
-    flash[:notice] = "#{@authentication.provider} deauthorized"
+    flash[:notice] = "#{@authentication.provider.titleize} disconnected"
     redirect_to edit_user_registration_path
   end
   
@@ -57,8 +58,24 @@ class AuthenticationsController < ApplicationController
       current_user.build_linkedin_profile(omniauth)
     when 'github'
       current_user.build_github_profile(omniauth)
+    when 'stackexchange'
+      current_user.build_stackexchange_profile(omniauth)
     else
       Rails.logger.info "Omniauth provider doesn't match existing support"
+    end
+  end
+  
+  protected
+  
+  def remove_associated_data
+    @authentication = current_user.authentications.find(params[:id])
+    case @authentication.provider
+    when 'linkedin'
+      current_user.linkedin_user.destroy
+    when 'github'
+      current_user.github_user.destroy
+    when 'stackexchange'
+      current_user.stackexchange_user.destroy
     end
   end
   

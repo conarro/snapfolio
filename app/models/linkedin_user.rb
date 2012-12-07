@@ -2,8 +2,8 @@ class LinkedinUser < ActiveRecord::Base
   belongs_to :user
   has_many :education_items
   has_many :position_items
-  has_many :educations, :through => :education_items
-  has_many :positions, :through => :position_items
+  has_many :educations, :through => :education_items, :dependent => :destroy
+  has_many :positions, :through => :position_items, :dependent => :destroy
   
   attr_accessible :user_id, :email, :first_name, :headline, :industry, :last_name, :location_country, :location_name, :photo_url, :profile_id, :profile_url
   
