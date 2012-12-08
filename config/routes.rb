@@ -18,6 +18,7 @@ Snapfolio::Application.routes.draw do
   
   post "/repos/:repo/change_web_pref" => "repos#change_web_pref", :as => :change_repo_web_pref
   
+  get "/:profile_name", :to => "home#show"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

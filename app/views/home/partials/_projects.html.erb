@@ -1,30 +1,35 @@
 <div class="box">
   <div class="box-header">
-    <h2>Projects</h2><%= link_to raw('<i class="icon-wrench"></i>'), '#', :class => 'settings-link' %>
-    <div id='change-setting-title' style="display:none;">
-      Project Settings
-    </div>
-    <div id='change-setting-content' style="display:none;">
-      <% web_icon = 'icon-minus-sign' %>
-      <% web_link_text = 'Hide from web folio' %>
-      <% print_icon = 'icon-minus-sign' %>
-      <% print_link_text = 'Hide from print folio' %>
-      <i class="<%= web_icon %>"></i> <%= link_to raw(" #{web_link_text}") %><br/>
-      <i class="<%= print_icon %>"></i> <%= link_to raw("#{print_link_text}")%>
-    </div>
+    <h2>Projects</h2>
+    <% if @owner %>
+      <%= link_to raw('<i class="icon-wrench"></i>'), '#', :class => 'settings-link' %>
+      <div id='change-setting-title' style="display:none;">
+        Project Settings
+      </div>
+      <div id='change-setting-content' style="display:none;">
+        <% web_icon = 'icon-minus-sign' %>
+        <% web_link_text = 'Hide from web folio' %>
+        <% print_icon = 'icon-minus-sign' %>
+        <% print_link_text = 'Hide from print folio' %>
+        <i class="<%= web_icon %>"></i> <%= link_to raw(" #{web_link_text}") %><br/>
+        <i class="<%= print_icon %>"></i> <%= link_to raw("#{print_link_text}")%>
+      </div>
+    <% end %>
   </div>
   <div class="box-content">
-    <% current_user.github_user.repos.is_web_visible.order("repo_created_at DESC").each do |repo| %>
+    <% @profile.github_user.repos.is_web_visible.order("repo_created_at DESC").each do |repo| %>
     <div class="box">
       <div class="module-item-header box-header">
         <h2><%= repo.name.titleize %></h2>
-        <%= link_to raw('<i class="icon-wrench"></i>'), '#', :class => 'settings-link' %>
+        <%= link_to raw('<i class="icon-wrench"></i>'), '#', :class => 'settings-link' if @owner %>
         <span class="pull-right"><%= "#{repo.repo_created_at.strftime('%h. %Y')} - #{repo.pushed_at.strftime('%h. %Y')}" %></span>
-        <div id='change-setting-title' style="display:none;">Project Settings</div>
-        <div id='change-setting-content' style="display:none;">
-          <%= settings_icon(repo, 'web') %> <%= link_to settings_text(repo, 'web'), change_repo_web_pref_path(repo), :method => :post %><br/>
-          <%= settings_icon(repo, 'print') %> <%= link_to settings_text(repo, 'print')%>
-        </div>
+        <% if @owner %>
+          <div id='change-setting-title' style="display:none;">Project Settings</div>
+          <div id='change-setting-content' style="display:none;">
+            <%= settings_icon(repo, 'web') %> <%= link_to settings_text(repo, 'web'), change_repo_web_pref_path(repo), :method => :post %><br/>
+            <%= settings_icon(repo, 'print') %> <%= link_to settings_text(repo, 'print')%>
+          </div>
+        <% end %>
       </div>
       <div class="module-item-content box-content" id="box1">
         <p><%= repo.description.humanize %></p>

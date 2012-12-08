@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
   
+  def is_owner
+    
+  end
+  
   def has_auth? provider
     !self.authentications.find_by_provider(provider).nil?
   end

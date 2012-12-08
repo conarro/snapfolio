@@ -7,6 +7,7 @@
         <%#= f.input :first_name, :required => true, :autofocus => true %>
         <%#= f.input :last_name, :required => true %>
         <%= f.input :email, :required => true %>
+        <%= f.input :profile_name, :label => "Profile URL", :hint => "This will be the URL for your folio" %>
         <%= f.input :password, :autocomplete => "off", :hint => "Leave blank if not changing", :required => false %>
         <%= f.input :password_confirmation, :required => false %>
         <%= f.input :current_password, :hint => "Enter password to confirm changes", :required => true %>

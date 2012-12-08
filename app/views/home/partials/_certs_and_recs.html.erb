@@ -27,10 +27,10 @@
         <button class="btn btn-primary">Save changes</button>
       </div>
     </div>
-    <% unless current_user.linkedin_user.educations.is_web_visible.count == 0 %>
+    <% unless @profile.linkedin_user.educations.is_web_visible.count == 0 %>
       <div class="cert-item">
         <h5>Education</h5>
-        <% current_user.linkedin_user.educations.is_web_visible.each do |edu| %>
+        <% @profile.linkedin_user.educations.is_web_visible.each do |edu| %>
           <ul class="unstyled">
             <small class="muted"><%= edu.school_name %></small>
             <li><%= "#{edu.degree}, #{edu.field_of_study}" unless edu.degree.blank? && edu.field_of_study.blank? %></li>
@@ -38,19 +38,19 @@
         <% end %>
       </div>
     <% end %>
-    <% if current_user.stackexchange_user %>
+    <% if @profile.stackexchange_user %>
       <div class="cert-item">
         <h5>StackOverflow</h5>
-        <dt style="margin-bottom:10px">Reputation: <%= current_user.stackexchange_user.reputation %></dt>
-        <span class="label icon-tooltip" title="Gold Badges" style="background:gold; padding:4px 8px;margin-right:5px;"><%= current_user.stackexchange_user.gold_badge_count %></span>
-        <span class="label icon-tooltip" title="Silver Badges" style="background:silver; padding:4px 8px;margin-right:5px;"><%= current_user.stackexchange_user.silver_badge_count %></span>
-        <span class="label icon-tooltip" title="Bronze Badges" style="background:#CD7F32; padding:4px 8px;"><%= current_user.stackexchange_user.bronze_badge_count %></span>
+        <dt style="margin-bottom:10px">Reputation: <%= @profile.stackexchange_user.reputation %></dt>
+        <span class="label icon-tooltip" title="Gold Badges" style="background:gold; padding:4px 8px;margin-right:5px;"><%= @profile.stackexchange_user.gold_badge_count %></span>
+        <span class="label icon-tooltip" title="Silver Badges" style="background:silver; padding:4px 8px;margin-right:5px;"><%= @profile.stackexchange_user.silver_badge_count %></span>
+        <span class="label icon-tooltip" title="Bronze Badges" style="background:#CD7F32; padding:4px 8px;"><%= @profile.stackexchange_user.bronze_badge_count %></span>
       </div>
     <% end %>
-    <% if current_user.codeschool_user %>
+    <% if @profile.codeschool_user %>
       <div class="cert-item">
         <h5>Code School</h5>
-        <% current_user.codeschool_user.badges.is_web_visible.take(8).each do |badge| %>
+        <% @profile.codeschool_user.badges.is_web_visible.take(8).each do |badge| %>
           <%= link_to (image_tag badge.url, :width => '35'), badge.course_url, :class => 'icon-tooltip', :title => "#{truncate(badge.name, :length => 25)}"%>
         <% end %>
         <a class="pull-right" href="#codeschool-badges" data-toggle="modal"><i class="icon-chevron-right"></i></a>
@@ -62,7 +62,7 @@
         <h3 id="myModalLabel">Code School Badges</h3>
       </div>
       <div class="modal-body">
-        <% current_user.codeschool_user.badges.is_web_visible.each_slice(4) do |batch| %>
+        <% @profile.codeschool_user.badges.is_web_visible.each_slice(4) do |batch| %>
         <% #raise batch.size.inspect %>
           <div class='row-fluid'>
             <% batch.each do |badge| %>
@@ -77,8 +77,8 @@
         <% end %>
       </div>
     </div>
-    <% recs = current_user.linkedin_user.recommendations %>
-    <% unless current_user.linkedin_user.recommendations.is_web_visible.count == 0 %>
+    <% recs = @profile.linkedin_user.recommendations %>
+    <% unless @profile.linkedin_user.recommendations.is_web_visible.count == 0 %>
       <div class="cert-item">
         <h5>Recommendations <a class="pull-right" href="#rec-modal1" data-toggle="modal"><i class="icon-chevron-right"></i></a></h5>
         <ul class="unstyled">

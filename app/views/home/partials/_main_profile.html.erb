@@ -4,10 +4,10 @@
     <%#= yield %>
     <div class="">
       <div class="page-header">
-        <h1><%= current_user.linkedin_user.full_name %> <small><%= current_user.linkedin_user.headline %></small></h1>
+        <h1><%= @profile.linkedin_user.full_name %> <small><%= @profile.linkedin_user.headline %></small></h1>
       </div>
-      <%= render :partial => 'home/partials/projects' if current_user.github_user %>
-      <%= render :partial => 'home/partials/experience' if current_user.linkedin_user %>
+      <%= render :partial => 'home/partials/projects' if @profile.github_user %>
+      <%= render :partial => 'home/partials/experience' if @profile.linkedin_user %>
     </div>
   </div>
 </div>

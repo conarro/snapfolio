@@ -1,17 +1,17 @@
 <div style="position:fixed; margin-top:75px;" class="sidebar left span3">
-  <%= image_tag current_user.linkedin_user.photo_url, :width => '150', :height => '150', :class => 'img-polaroid' %>
+  <%= image_tag @profile.linkedin_user.photo_url, :width => '150', :height => '150', :class => 'img-polaroid' %>
   <div style="margin-top:15px;">
     <div style="font-size:20px" class="icon-set">
-      <%= link_to raw('<i class="icon-linkedin-sign icon-large snap-color"></i>'), current_user.linkedin_user.profile_url, :class => 'icon-tooltip', :title => 'View LinkedIn profile', :target => '_blank' if current_user.linkedin_user %>
-      <%= link_to raw('<i class="icon-github-sign icon-large"></i>'), current_user.github_user.profile_url, :class => 'icon-tooltip', :title => 'View GitHub profile', :target => '_blank' if current_user.github_user %>
-      <%#= link_to raw('<i class="icon-twitter-sign icon-large"></i>'), current_user.twitter_user.profile_url, :class => 'icon-tooltip', :title => 'View Twitter profile', :target => '_blank' if current_user.github_user %>
-      <%#= link_to raw('<i class="icon-facebook-sign icon-large"></i>'), current_user.facebook_user.profile_url, :class => 'icon-tooltip', :title => 'View Facebook profile', :target => '_blank' if current_user.github_user %>
-      <%#= link_to raw('<i class="icon-google-plus-sign icon-large"></i>'), current_user.google_user.profile_url, :class => 'icon-tooltip', :title => 'View Google+ profile', :target => '_blank' if current_user.github_user %>
+      <%= link_to raw('<i class="icon-linkedin-sign icon-large snap-color"></i>'), @profile.linkedin_user.profile_url, :class => 'icon-tooltip', :title => 'View LinkedIn profile', :target => '_blank' if @profile.linkedin_user %>
+      <%= link_to raw('<i class="icon-github-sign icon-large"></i>'), @profile.github_user.profile_url, :class => 'icon-tooltip', :title => 'View GitHub profile', :target => '_blank' if @profile.github_user %>
+      <%#= link_to raw('<i class="icon-twitter-sign icon-large"></i>'), @profile.twitter_user.profile_url, :class => 'icon-tooltip', :title => 'View Twitter profile', :target => '_blank' if @profile.github_user %>
+      <%#= link_to raw('<i class="icon-facebook-sign icon-large"></i>'), @profile.facebook_user.profile_url, :class => 'icon-tooltip', :title => 'View Facebook profile', :target => '_blank' if @profile.github_user %>
+      <%#= link_to raw('<i class="icon-google-plus-sign icon-large"></i>'), @profile.google_user.profile_url, :class => 'icon-tooltip', :title => 'View Google+ profile', :target => '_blank' if @profile.github_user %>
     </div>
     <address style="margin-top:5px">
-      <i class="icon-envelope-alt"></i> <%= link_to current_user.linkedin_user.email, "mailto:#{current_user.linkedin_user.email}" %></a>
-      <p><i class="icon-phone-sign"></i> <%#= current_user.phone %></p>
-      <i class="icon-home"></i> <%#= current_user.address %>
+      <i class="icon-envelope-alt"></i> <%= link_to @profile.linkedin_user.email, "mailto:#{@profile.linkedin_user.email}" %></a>
+      <p><i class="icon-phone-sign"></i> <%#= @profile.phone %></p>
+      <i class="icon-home"></i> <%#= @profile.address %>
       5634 Beacon Street<br>
       Pittsburgh PA, 15217<br>
     </address>

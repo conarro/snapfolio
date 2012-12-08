@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class="box-content">
-    <% current_user.linkedin_user.positions.is_web_visible.each do |pos| %>
+    <% @profile.linkedin_user.positions.is_web_visible.each do |pos| %>
     <div class="box">
       <div class="module-item-header box-header">
         <h2><%= pos.title %> <small><%= pos.company %> - Atlanta, GA</small></h2>
