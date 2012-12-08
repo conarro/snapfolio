@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  codeschool_user_id: 1
+  badge_id: 1
+  is_web_visible: false
+  is_print_visible: false
+
+two:
+  codeschool_user_id: 1
+  badge_id: 1
+  is_web_visible: false
+  is_print_visible: false

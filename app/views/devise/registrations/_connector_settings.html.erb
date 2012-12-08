@@ -1,79 +1,67 @@
 <%= row do %>
   <%= databox("<i class='linkedin_square24 tsc_social_square24'></i>LinkedIn", :class => 'span4') do %>
     <% if current_user && current_user.has_auth?('linkedin') %>
-      <div style="width:400px;">
-        <%= image_tag current_user.linkedin_user.photo_url, :class => "img-polaroid pull-left", :width => '80', :style => 'margin:8px 0 0 5px;'%>
-        <div class="caption pull-left" style="margin:5px 0 0 10px;">
-          <p style="padding-top:5px;font-size:1.1em;">Signed in as <%= current_user.linkedin_user.full_name %></p>
-          <%= link_to raw("<i class='icon-minus-sign'></i> Disconnect"), authentication_path(current_user.get_auth('linkedin')), :method => :delete, :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
-        </div>
+      <%= image_tag current_user.linkedin_user.photo_url, :class => "img-polaroid pull-left", :width => '80', :style => 'margin:8px 0 0 5px;'%>
+      <div class="caption pull-left" style="margin:5px 0 0 10px;">
+        <p style="padding-top:5px;font-size:1.1em;">Signed in as <%= current_user.linkedin_user.full_name %></p>
+        <%= link_to raw("<i class='icon-minus-sign'></i> Disconnect"), authentication_path(current_user.get_auth('linkedin')), :method => :delete, :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
       </div>
     <% else %>
-      <div style="width:400px;">
-        <div class="caption pull-left">
-          <p>You haven't connected to LinkedIn yet.</p>
-          <%= link_to raw("<i class='icon-plus-sign icon-large'></i> Connect"), linkedin_auth_path, :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
-        </div>
+      <div class="caption pull-left">
+        <p>You haven't connected to LinkedIn yet.</p>
+        <%= link_to raw("<i class='icon-plus-sign icon-large'></i> Connect"), linkedin_auth_path, :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
       </div>
     <% end %>
   <% end %>
   
   <%= databox("<i class='github_square24 tsc_social_square24'></i>GitHub", :class => 'span4') do %>
     <% if current_user && current_user.has_auth?('github') %>
-      <div style="width:400px;">
-        <%= image_tag current_user.github_user.photo_url, :class => "img-polaroid pull-left", :width => '80', :style => 'margin:8px 0 0 5px;' if current_user.github_user.photo_url %>
-        <div class="caption pull-left" style="margin:5px 0 0 10px;">
-          <p style="padding-top:5px;font-size:1.1em;">Signed in as <%= current_user.github_user.username %></p>
-          <%= link_to raw("<i class='icon-minus-sign'></i> Disconnect"), authentication_path(current_user.get_auth('github')), :method => :delete, :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
-        </div>
+      <%= image_tag current_user.github_user.photo_url, :class => "img-polaroid pull-left", :width => '80', :style => 'margin:8px 0 0 5px;' if current_user.github_user.photo_url %>
+      <div class="caption pull-left" style="margin:5px 0 0 10px;">
+        <p style="padding-top:5px;font-size:1.1em;">Signed in as <%= current_user.github_user.username %></p>
+        <%= link_to raw("<i class='icon-minus-sign'></i> Disconnect"), authentication_path(current_user.get_auth('github')), :method => :delete, :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
       </div>
     <% else %>
-      <div style="width:400px;">
-        <p>You haven't connected to GitHub yet.</p>
-          <%= link_to raw("<i class='icon-plus-sign icon-large'></i> Connect"), github_auth_path, :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
-      </div>
+      <p>You haven't connected to GitHub yet.</p>
+      <%= link_to raw("<i class='icon-plus-sign icon-large'></i> Connect"), github_auth_path, :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
     <% end %>
-    <div id="github-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Connect with GitHub</h3>
-      </div>
-      <div class="modal-body">
-        here is a form to add github stuff
-      </div>
-    </div>
+
   <% end %>
 
   <%= databox("<i class='stackoverflow_square24 tsc_social_square24'></i>StackOverflow", :class => 'span4') do %>
     <% if current_user && current_user.has_auth?('stackexchange') %>
-      <div style="width:400px;">
-        <%= image_tag current_user.stackexchange_user.photo_url, :class => "img-polaroid pull-left", :width => '80', :style => 'margin:8px 0 0 5px;' if current_user.stackexchange_user.photo_url %>
-        <div class="caption pull-left" style="margin:5px 0 0 10px;">
-          <p style="padding-top:5px;font-size:1.1em;">Signed in as <%= current_user.stackexchange_user.username %></p>
-          <%= link_to raw("<i class='icon-minus-sign'></i> Disconnect"), authentication_path(current_user.get_auth('stackexchange')), :method => :delete, :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
-        </div>
+      <%= image_tag current_user.stackexchange_user.photo_url, :class => "img-polaroid pull-left", :width => '80', :style => 'margin:8px 0 0 5px;' if current_user.stackexchange_user.photo_url %>
+      <div class="caption pull-left" style="margin:5px 0 0 10px;">
+        <p style="padding-top:5px;font-size:1.1em;">Signed in as <%= current_user.stackexchange_user.username %></p>
+        <%= link_to raw("<i class='icon-minus-sign'></i> Disconnect"), authentication_path(current_user.get_auth('stackexchange')), :method => :delete, :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
       </div>
     <% else %>
-      <div style="width:400px;">
-        <p>You haven't connected to StackOverflow yet.</p>
-          <%= link_to raw("<i class='icon-plus-sign icon-large'></i> Connect"), stackexchange_auth_path, :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
-      </div>
+      <p>You haven't connected to StackOverflow yet.</p>
+      <%= link_to raw("<i class='icon-plus-sign icon-large'></i> Connect"), stackexchange_auth_path, :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
     <% end %>
   <% end %>
 <% end %>
 
 <%= row do %>
-  <%= databox("<i class='stackoverflow_square24 tsc_social_square24'></i>Code School", :class => 'span4') do %>
+  <%= databox("<img src='/assets/codeschool-icon.png' width='22' height='auto'/> Code School", :class => 'span4') do %>
     <% if current_user && current_user.codeschool_user %>
+      <%= image_tag current_user.codeschool_user.photo_url, :class => "img-polaroid pull-left", :width => '80', :style => 'margin:8px 0 0 5px;' if current_user.codeschool_user.photo_url %>
       <div class="caption pull-left" style="margin:5px 0 0 10px;">
         <p style="padding-top:5px;font-size:1.1em;">Signed in as <%= current_user.codeschool_user.username %></p>
         <%= link_to raw("<i class='icon-minus-sign'></i> Disconnect"), codeschool_user_path(current_user.codeschool_user), :method => :delete, :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
       </div>
     <% else %>
-      <div style="width:400px;">
-        <p>You haven't connected to Code School yet.</p>
-          <%= link_to raw("<i class='icon-plus-sign icon-large'></i> Connect"), :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;' %>
-      </div>
+      <p>You haven't connected to Code School yet.</p>
+        <%= link_to raw("<i class='icon-plus-sign icon-large'></i> Connect"), '#connect-with-codeschool', :class => 'btn', :style => 'padding:5px 10px; border-radius:3px;', :data => {:toggle=>"modal"} %>
     <% end %>
+    <div id="connect-with-codeschool" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Connect with Code School</h3>
+      </div>
+      <div class="modal-body">
+        <%= render :partial => 'codeschool_users/new', :locals => {:codeschool_user => CodeschoolUser.new } %>
+      </div>
+    </div>
   <% end %>
 <% end %>

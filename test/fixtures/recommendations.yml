@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  recommendation_id: MyString
+  type: 
+  text: MyString
+  recommender: MyString
+
+two:
+  recommendation_id: MyString
+  type: 
+  text: MyString
+  recommender: MyString

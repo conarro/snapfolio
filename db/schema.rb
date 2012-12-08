@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121207214314) do
+ActiveRecord::Schema.define(:version => 20121208003804) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -21,6 +21,32 @@ ActiveRecord::Schema.define(:version => 20121207214314) do
     t.datetime "updated_at", :null => false
     t.string   "token"
     t.string   "secret"
+  end
+
+  create_table "badge_items", :force => true do |t|
+    t.integer  "codeschool_user_id"
+    t.integer  "badge_id"
+    t.boolean  "is_web_visible",     :default => true
+    t.boolean  "is_print_visible",   :default => true
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+  end
+
+  create_table "badges", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "course_url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "codeschool_users", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "username"
+    t.integer  "score"
+    t.string   "photo_url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "education_items", :force => true do |t|
@@ -88,6 +114,24 @@ ActiveRecord::Schema.define(:version => 20121207214314) do
     t.datetime "end_date"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "recommendation_items", :force => true do |t|
+    t.integer  "linkedin_user_id"
+    t.integer  "recommendation_id"
+    t.boolean  "is_web_visible"
+    t.boolean  "is_print_visible"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "recommendations", :force => true do |t|
+    t.string   "recommendation_id"
+    t.string   "type"
+    t.string   "text"
+    t.string   "recommender"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "repo_items", :force => true do |t|

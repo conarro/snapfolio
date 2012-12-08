@@ -33,7 +33,7 @@
         <% current_user.linkedin_user.educations.is_web_visible.each do |edu| %>
           <ul class="unstyled">
             <small class="muted"><%= edu.school_name %></small>
-            <li><%= "#{edu.degree}, #{edu.field_of_study}" %></li>
+            <li><%= "#{edu.degree}, #{edu.field_of_study}" unless edu.degree.blank? && edu.field_of_study.blank? %></li>
           </ul>
         <% end %>
       </div>
@@ -47,78 +47,58 @@
         <span class="label icon-tooltip" title="Bronze Badges" style="background:#CD7F32; padding:4px 8px;"><%= current_user.stackexchange_user.bronze_badge_count %></span>
       </div>
     <% end %>
-    <% if current_user.stackexchange_user %>
+    <% if current_user.codeschool_user %>
       <div class="cert-item">
         <h5>Code School</h5>
-        <a class="no-decoration" href="#">
-          <img class="icon-tooltip" title="Level 3 RSpec" src="https://d1ffx7ull4987f.cloudfront.net/images/achievements/small_badge/118/level-3-on-testing-with-rspec-f686e3f7a7e37e6aee8ec39b8fd80736.png" width="35"/>
-        </a>
+        <% current_user.codeschool_user.badges.is_web_visible.take(8).each do |badge| %>
+          <%= link_to (image_tag badge.url, :width => '35'), badge.course_url, :class => 'icon-tooltip', :title => "#{truncate(badge.name, :length => 25)}"%>
+        <% end %>
+        <a class="pull-right" href="#codeschool-badges" data-toggle="modal"><i class="icon-chevron-right"></i></a>
       </div>
     <% end %>
-    <div id="badge-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="codeschool-badges" class="modal show fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Badges</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="false">×</button>
+        <h3 id="myModalLabel">Code School Badges</h3>
       </div>
       <div class="modal-body">
-        <h5>Code School</h5>
-        <a class="no-decoration" href="#">
-          <img class="icon-tooltip" title="Level 3 RSpec" src="https://d1ffx7ull4987f.cloudfront.net/images/achievements/small_badge/118/level-3-on-testing-with-rspec-f686e3f7a7e37e6aee8ec39b8fd80736.png" width="35"/>
-        </a>
-        <a class="no-decoration" href="#">
-        <img class="icon-tooltip" title="Level 2 RFZ" src="https://d1ffx7ull4987f.cloudfront.net/images/achievements/small_badge/27/level-2-on-rails-for-zombies-2-d48f5efdc5baa2beffd93f1ff2be8111.png" width="35"/>
-        </a>
-        <a class="no-decoration" href="#">
-        <img class="icon-tooltip" title="Level 7 CSS" src="https://d1ffx7ull4987f.cloudfront.net/images/achievements/small_badge/47/level-7-on-css-cross-country-e6f3f26d75da61126f2f413e089bddc6.png" width="35"/>
-        </a>
-        <a class="no-decoration" href="#">
-        <img class="icon-tooltip" title="Level 3 RBP" src="https://d1ffx7ull4987f.cloudfront.net/images/achievements/large_badge/9/level-3-on-rails-best-practices-91e403c397ed24679a2f862370314e82.png" width="35"/>
-        </a>
-        <a class="no-decoration" href="#">
-          <img class="icon-tooltip" title="Level 3 RSpec" src="https://d1ffx7ull4987f.cloudfront.net/images/achievements/small_badge/118/level-3-on-testing-with-rspec-f686e3f7a7e37e6aee8ec39b8fd80736.png" width="35"/>
-        </a>
-        <a class="no-decoration" href="#">
-        <img class="icon-tooltip" title="Level 2 RFZ" src="https://d1ffx7ull4987f.cloudfront.net/images/achievements/small_badge/27/level-2-on-rails-for-zombies-2-d48f5efdc5baa2beffd93f1ff2be8111.png" width="35"/>
-        </a>
-        <a class="no-decoration" href="#">
-        <img class="icon-tooltip" title="Level 7 CSS" src="https://d1ffx7ull4987f.cloudfront.net/images/achievements/small_badge/47/level-7-on-css-cross-country-e6f3f26d75da61126f2f413e089bddc6.png" width="35"/>
-        </a>
-        <a class="no-decoration" href="#">
-        <img class="icon-tooltip" title="Level 3 RBP" src="https://d1ffx7ull4987f.cloudfront.net/images/achievements/large_badge/9/level-3-on-rails-best-practices-91e403c397ed24679a2f862370314e82.png" width="35"/>
-        </a>
+        <% current_user.codeschool_user.badges.is_web_visible.each_slice(4) do |batch| %>
+        <% #raise batch.size.inspect %>
+          <div class='row-fluid'>
+            <% batch.each do |badge| %>
+              <div class="span3 pull-left" style='text-align:center;'>
+                <%= image_tag badge.url, :width => '50' %>
+                <div class="caption">
+                  <p style="padding-top:3px;font-size:.9em;line-height:1.1em;"><%= link_to badge.name, badge.course_url, :target => "_blank" %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
-    <div class="cert-item">
-      <h5>Recommendations <a class="pull-right" href="#rec-modal1" data-toggle="modal"><i class="icon-chevron-right"></i></a></h5>
-      
-      <ul class="unstyled">
-        <li>"I have worked with Kyle on a initiative to accelerate innovation at Cisco TAC..." <a href="#rec-modal1" data-toggle="modal">More &raquo;</a><br/><small class="muted">Janardhana Rao Padavala</small></li>
-        <li>"Kyle has done Summer Intern at Ericsson. During that period..." <a href="#rec-modal1" data-toggle="modal">More &raquo;</a><br/><small class="muted">Janardhana Rao Padavala</small></li>
-      </ul>
-    </div>
-    <div id="rec-modal1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Recommendations</h3>
+    <% recs = current_user.linkedin_user.recommendations %>
+    <% unless current_user.linkedin_user.recommendations.is_web_visible.count == 0 %>
+      <div class="cert-item">
+        <h5>Recommendations <a class="pull-right" href="#rec-modal1" data-toggle="modal"><i class="icon-chevron-right"></i></a></h5>
+        <ul class="unstyled">
+          <% recs.each do |rec| %>
+            <li><%= truncate(rec.text, :length => 75) %><a href="#rec-modal1" data-toggle="modal">More &raquo;</a><br/><small class="muted"><%= rec.recommender %></small></li>
+          <% end %>
+        </ul>
       </div>
-      <div class="modal-body">
-        <blockquote>
-          <p>I have worked with Kyle on a initiative to accelerate innovation at Cisco TAC. He is a passionate and creative person. He came up with several ideas to stimulate innovation. Excellent team player!</p>
-          <small>Janardhana Rao Padavala <cite title="Source Title">Sr. Manager, Technnical Support, Cisco Systems</cite></small>
-        </blockquote>
-        <blockquote>
-          <p>Kyle has done Summer Intern at Ericsson and during that period; he delicately completed the given project on time. He is self-driven, focused and dedicated engineer while associating with Ericsson. He got selected in Cisco and worked there before opting for MS which again shows a dedication towards achieving another mile stone. I wish him good luck for his MS.</p>
-          <small>Avinash Kumar Singh <cite title="Source Title">Senior Manager - IT, Ericsson India Pvt Ltd</cite></small>
-        </blockquote>
-        <blockquote>
-          <p>I have worked with Kyle on a initiative to accelerate innovation at Cisco TAC. He is a passionate and creative person. He came up with several ideas to stimulate innovation. Excellent team player!</p>
-          <small>Janardhana Rao Padavala <cite title="Source Title">Sr. Manager, Technnical Support, Cisco Systems</cite></small>
-        </blockquote>
-        <blockquote>
-          <p>Kyle has done Summer Intern at Ericsson and during that period; he delicately completed the given project on time. He is self-driven, focused and dedicated engineer while associating with Ericsson. He got selected in Cisco and worked there before opting for MS which again shows a dedication towards achieving another mile stone. I wish him good luck for his MS.</p>
-          <small>Avinash Kumar Singh <cite title="Source Title">Senior Manager - IT, Ericsson India Pvt Ltd</cite></small>
-        </blockquote>
+      <div id="rec-modal1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">Recommendations</h3>
+        </div>
+        <div class="modal-body">
+          <blockquote>
+            <p>I have worked with Kyle on a initiative to accelerate innovation at Cisco TAC. He is a passionate and creative person. He came up with several ideas to stimulate innovation. Excellent team player!</p>
+            <small>Janardhana Rao Padavala <cite title="Source Title">Sr. Manager, Technnical Support, Cisco Systems</cite></small>
+          </blockquote>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>

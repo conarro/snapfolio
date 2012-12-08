@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_one :linkedin_user
   has_one :github_user
   has_one :stackexchange_user
+  has_one :codeschool_user
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -36,7 +37,6 @@ class User < ActiveRecord::Base
                                  :location_name    => omniauth['extra']['raw_info']['location']['name'],
                                  :location_country => omniauth['extra']['raw_info']['location']['country']['code'],
                                  :profile_id       => omniauth['extra']['raw_info']['id'])
-      Rails.logger.info "Omniauth - adding education..."
       lu.build_profile(omniauth)
     else
       client = self.linkedin_user.client

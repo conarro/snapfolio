@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  codeschool_user_id: 1
+  name: MyString
+  url: MyString
+  course_url: MyString
+
+two:
+  codeschool_user_id: 1
+  name: MyString
+  url: MyString
+  course_url: MyString

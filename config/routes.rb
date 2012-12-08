@@ -4,6 +4,7 @@ Snapfolio::Application.routes.draw do
   
   resources :authentications
   resources :repos
+  resources :codeschool_users
   devise_for :users
   
   resources :home
